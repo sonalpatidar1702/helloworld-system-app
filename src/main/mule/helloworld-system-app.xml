@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b214ffe1-3849-4715-90d4-e5945d4b7167" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="helloworld-system-appFlow" doc:id="ca00d41b-1c03-4d99-87e2-5dd43b0cfe5a" >
+		<http:listener doc:name="Listener" doc:id="cebb6c75-6c29-4535-b564-9b7270ee2a27" config-ref="HTTP_Listener_config" path="/actions"/>
+		<logger level="INFO" doc:name="Flow Start" doc:id="a8756e22-6293-4806-bec3-122796b4c7ac" message='#["Request Received"]'/>
+		<ee:transform doc:name="Transform Message" doc:id="d8b32950-5b93-469e-90e4-901429869bf7" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{ 
+	"status": "success",
+	"message": "Hello World!!!"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Flow End " doc:id="b8a8a1d4-a203-4f9d-ba1d-0370508d88be" message='#["Flow End"]'/>
+	</flow>
+</mule>
