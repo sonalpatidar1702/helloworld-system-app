@@ -4,7 +4,7 @@
 
 	<groupId>91b0ef80-9ef9-4666-98fc-7b6624759226</groupId>
 	<artifactId>helloworld-system-app</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>mule-application</packaging>
 
 	<name>helloworld-system-app-v1</name>
@@ -69,12 +69,7 @@
 	</dependencies>
 
 	<repositories>
-		<repository>
-			<id>anypoint.credentials</id>
-			<name>Anypoint Exchange</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
-			<layout>default</layout>
-		</repository>
+		
 		<repository>
 			<id>mulesoft-releases</id>
 			<name>MuleSoft Releases Repository</name>
